@@ -16,10 +16,10 @@ namespace DockingTempate.ViewModels
         private RadSplitContainer _explorerContainer;
         private readonly IPaneViewModelFactory _paneFactory;
 
-        public ShellViewModel(/*IExplorerViewModel explorerViewModel, */IPaneViewModelFactory paneFactory)
+        public ShellViewModel(IExplorerViewModel explorerViewModel, IPaneViewModelFactory paneFactory)
         {
             _paneFactory = paneFactory;
-            //Items.Add(explorerViewModel);
+            Items.Add(explorerViewModel);
         }
 
         public void Load(object param)
