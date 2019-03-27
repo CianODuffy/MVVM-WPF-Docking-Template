@@ -1,9 +1,42 @@
 ﻿<Application x:Class="DockingTempate.App"
-             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+            xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:DockingTempate"
-             StartupUri="MainWindow.xaml">
+             xmlns:telerikDocking="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking"
+             xmlns:local1="clr-namespace:DockingTempate">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/System.Windows.xaml"/>
+                <ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.xaml"/>
+                <ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.Input.xaml"/>
+
+                <ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.Docking.xaml"/>
+                <ResourceDictionary Source="/Telerik.Windows.Themes.Fluent;component/Themes/Telerik.Windows.Controls.Navigation.xaml"/>
+                <ResourceDictionary>
+                    <local1:AppBootstrapper x:Key="bootstrapper" />
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+
+
+            <Style TargetType="telerikDocking:RadPane" BasedOn="{StaticResource RadPaneStyle}">
+                <Setter Property="CanDockInDocumentHost" Value="False" />
+                <Setter Property="Header" Value="{Binding Header}" />
+                <Setter Property="IsHidden" Value="False" />
+                <Setter Property="IsActive" Value="true" />
+                <Setter Property="CanUserClose" Value="{Binding CanUserClose, Mode=OneWay}" />
+                <Setter Property="CanFloat" Value="{Binding CanFloat, Mode=OneWay}" />
+                <Setter Property="ContextMenuTemplate" Value="{x:Null}" />
+                <Setter Property="CanUserPin" Value="False" />
+            </Style>
+
+            <Style TargetType="telerikDocking:RadDocumentPane" BasedOn="{StaticResource RadPaneStyle}">
+                <Setter Property="Header" Value="{Binding Header, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}" />
+                <Setter Property="ToolTip" Value="{Binding Header, UpdateSourceTrigger=PropertyChanged, Mode=OneWay}"/>
+                <Setter Property="IsHidden" Value="False" />
+                <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay}" />
+                <Setter Property="IsActive" Value="true" />
+            </Style>
+
+        </ResourceDictionary>
     </Application.Resources>
 </Application>

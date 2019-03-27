@@ -1,0 +1,27 @@
+﻿<Window x:Class="DockingTempate.Views.ShellView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+         xmlns:telerikDocking="clr-namespace:Telerik.Windows.Controls;assembly=Telerik.Windows.Controls.Docking"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:DockingTempate.Views"
+        xmlns:factory1="clr-namespace:DockingTempate.Factory"
+        mc:Ignorable="d"
+        Title="ShellView" Height="450" Width="800">
+    <Grid>
+        <telerikDocking:RadDocking x:Name="radDocking" 
+                                   CloseButtonPosition="InPaneAndGroup"
+                                   PreviewShowCompass="OnPreviewShowCompass"
+                                   PanesSource="{Binding Items}">
+            <telerikDocking:RadDocking.DockingPanesFactory>
+                <factory1:CustomDockingPanesFactory/>
+            </telerikDocking:RadDocking.DockingPanesFactory>
+            <telerikDocking:RadSplitContainer 
+                x:Name="ExplorerContainer"
+                InitialPosition="DockedLeft">
+                <telerikDocking:RadPaneGroup Name="leftGroup" />
+            </telerikDocking:RadSplitContainer>
+        </telerikDocking:RadDocking>
+    </Grid>
+</Window>
+
